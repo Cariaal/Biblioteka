@@ -1,0 +1,102 @@
+using System;
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        i_KontoBankowe a = new KontoA();
+        i_KontoBankowe b = new KontoB();
+        a.PrzetransferujDo(b, 100);
+        a.Wplac(500);
+        b.Wplac(500);
+        Console.WriteLine("saldo a: " + a.Saldo);
+        Console.WriteLine("saldo b: " + b.Saldo);
+        Console.ReadKey();
+    }
+}
+
+interface i_KontoBankowe
+{
+    decimal Saldo
+    {
+        get;
+    }
+    void Wplac(decimal ilosc);
+    bool Wyplac(decimal ilosc);
+    bool PrzetransferujDo(i_KontoBankowe cel, decimal ilosc);
+
+}
+class KontoA : i_KontoBankowe
+{
+    private decimal saldo;
+    public decimal Saldo
+    {
+
+        get
+        {
+            return saldo;
+        }
+    }
+    public void Wplac(decimal ilosc)
+    {
+        saldo += ilosc;
+    }
+    public bool Wyplac(decimal ilosc)
+    {
+        if (saldo < ilosc)
+        {
+            saldo -= ilosc;
+            return true;
+        }
+        Console.WriteLine("Spierdalaj");
+        return false;
+    }
+    public bool PrzetransferujDo(i_KontoBankowe cel, decimal ilosc)
+    {
+        bool wyplacono = this.Wyplac(ilosc);
+        if (wyplacono)
+        {
+            cel.Wplac(ilosc);
+        }
+        return wyplacono;
+    }
+}
+
+
+class KontoB : i_KontoBankowe
+{
+    private decimal saldo;
+    public decimal lalal;
+    public decimal Saldo
+    {
+
+        get
+        {
+            return saldo;
+        }
+    }
+    public void Wplac(decimal ilosc)
+    {
+        saldo += ilosc;
+    }
+    public bool Wyplac(decimal ilosc)
+    {
+        if (saldo < ilosc)
+        {
+            saldo -= ilosc;
+            return true;
+        }
+        Console.WriteLine("Spierdalaj");
+        return false;
+    }
+    public bool PrzetransferujDo(i_KontoBankowe cel, decimal ilosc)
+    {
+        bool wyplacono = this.Wyplac(ilosc);
+        if (wyplacono)
+        {
+            cel.Wplac(ilosc);
+        }
+        return wyplacono;
+    }
+}

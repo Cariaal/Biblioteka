@@ -1,0 +1,31 @@
+using System;
+using System.Collections;
+
+namespace ConsoleApp10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Stack liczby = new Stack();
+            liczby.Push(10);
+            liczby.Push(2);
+            liczby.Push(5);
+            liczby.Push(6);
+            liczby.Push(13);
+            foreach (var item in liczby)
+            {
+                Console.WriteLine(item);
+            }
+            while (liczby.Count !=0)
+            {
+                //Console.ReadKey();
+                int liczba = (int)liczby.Pop();
+                Console.WriteLine(liczba +" "+ "zostala usunieta");
+            }
+            Console.ReadKey();
+
+
+        }
+    }
+}

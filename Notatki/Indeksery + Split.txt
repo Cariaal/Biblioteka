@@ -1,0 +1,44 @@
+using System;
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        Zdanie a = new Zdanie("to jest zdanie testowe");
+        a[0] = "dupa";
+        Console.WriteLine(a[0]);
+        Console.ReadKey();
+        }
+    }
+
+class Zdanie
+{
+    string[] slowa;
+    public Zdanie(string zdanie)
+    {
+        this.slowa = zdanie.Split(); // dzieli na słowa, separator - spacja
+    }
+    public string this[int n]
+    {
+        get 
+        {
+            if (slowa.Length>n)
+            {
+                return slowa[n];
+            }
+            return "blad";
+        }
+        set 
+        {
+            if (slowa.Length > n)
+            {
+                slowa[n] = value;
+            }
+          
+        }
+
+    }
+}
+
+

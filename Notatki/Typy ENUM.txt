@@ -1,0 +1,41 @@
+using System;
+
+
+    class Program
+    {
+    public enum TimeOfDay // Publiczna zmienna A NIE KLASA
+    {
+        Morning, Afternoon, Evening // trzeba WYLICZYĆ 0, 1, 2 defaultowo
+    } // jeśli zrobimy Afternoon = 4 to następny będzie =5
+    public static string getGreetings(TimeOfDay time)
+    {
+        switch (time)
+        {
+            case TimeOfDay.Morning: 
+                return "Good Morning";
+            case TimeOfDay.Afternoon: 
+                return "Good Afternoon";
+            case TimeOfDay.Evening: 
+                return "Good Evening";
+            default:
+                return "Sth went wrong";
+        }
+    }
+    static void Main(string[] args)
+        {
+        TimeOfDay a = 0;
+        TimeOfDay b = (TimeOfDay)1;
+        TimeOfDay c = (TimeOfDay)2;
+        TimeOfDay d = (TimeOfDay)3;
+
+        Console.WriteLine(getGreetings(a));
+        Console.WriteLine(getGreetings(b));
+        Console.WriteLine(getGreetings(c));
+        Console.WriteLine(getGreetings(d));
+
+        Console.ReadKey();
+        }
+    }
+
+
+

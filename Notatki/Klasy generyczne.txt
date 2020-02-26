@@ -1,0 +1,75 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+
+class Program
+{
+    static void Main(string[] args)
+    {
+
+        ArrayList lista = new ArrayList(); // arrayList - klasa generyczna
+        lista.Add(5);
+        lista.Add(1);
+        lista.Add(2);
+        lista.Add(3);
+        lista.Add("fff");
+        lista.Add(new Test("wartosc z egzemplarze klasy test"));
+
+        // toString zwraca nazwę klasy
+        for (int i = 0; i < lista.Count; i++)
+        {
+            // Console.WriteLine((Test)lista[i]);
+            Console.WriteLine(lista[i].ToString());
+        }
+        List <int> listaIntegerow = new List<int>(); // od razu wywala za złe dane
+        listaIntegerow.Add(10);
+        listaIntegerow.Add(20); 
+        
+        List <Test> listaTestow = new List<Test>();
+        listaTestow.Add(new Test("blablabla")) ;
+        listaTestow.Add(new Test("blablafffffffbla")) ;
+
+        for (int i = 0; i < listaTestow.Count; i++)
+        {
+            Console.WriteLine(listaTestow[i].testowyString);
+        }
+        var zm = new zwykla<string>();
+        zm.nadajWartosc("to jest dziwne ale dziala");
+        Console.WriteLine(zm.zwrocWartosc());
+        Console.ReadKey();
+    }
+}
+
+class zwykla <cokolwiek> // klasa generyczna (uogólniona = przyjmuje to co się zadeklaruje)
+{
+    cokolwiek nazwaZmiennejTypuGenerycznego;
+    public cokolwiek zwrocWartosc()
+    {
+        return this.nazwaZmiennejTypuGenerycznego;
+    }
+    public void nadajWartosc(cokolwiek nazwaZmiennejTypuGenerycznego)
+    {
+        this.nazwaZmiennejTypuGenerycznego = nazwaZmiennejTypuGenerycznego;
+    }
+}
+
+class Test
+{ 
+public string testowyString
+    {
+        get;
+        private set;
+    }
+
+    public Test(string testowyString)
+    {
+        this.testowyString = testowyString;
+    }
+    public override string ToString()
+    {
+        return this.testowyString;
+    }
+}
+
+

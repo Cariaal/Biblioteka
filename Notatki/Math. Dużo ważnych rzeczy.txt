@@ -1,0 +1,90 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int a = 10;
+            Math.increaseBy5(ref a); // odwołanie do miejsca w pamięci
+            int b;
+            Math.zeruj(out b); // dla zmiennych NIEZAINICJALIZOWANYCH
+            //Console.WriteLine(a +" "+ b);
+            //Console.WriteLine(Math.dodaj(1,2,3,2,3,1));
+            //Console.WriteLine(Math.poteguj(2));
+            Obywatel obywatel = new Obywatel(imie: "Amadeusz", nazwisko: "Hauptmann"); //nazywane argumenty
+            Console.WriteLine(obywatel.nazwisko +" "+ obywatel.imie);
+            Console.ReadKey();
+        }
+
+        class Math
+        {
+            static int a; // musi też być statyczne żeby można było użyć w metodzie statycznej jak niżej
+            public static int abs(int x) 
+            {
+                a = 10;
+                if (x < 0)
+                {
+                    return x * (-1);
+                }
+                else
+                {
+                    return x;
+                }
+
+            }
+
+
+            public static int increaseBy5(ref int nr) // przeciążanie metod
+            {
+                nr += 5;
+                return nr;
+            }
+
+            public static int increaseBy5(int nr) // przeciążanie metod
+            {
+                nr += 5;
+                return nr;
+            }
+
+            public static void zeruj(out int b) // OUT tak samo jak w funkcji głównej
+            {
+                b = 0;
+            }
+
+            public static int dodaj(params int[]args) // przesyłanie WIELU argumentów
+            {
+                int suma = 0;
+                for (int i = 0; i < args.Length; i++) // dodaje wszystkie elementy przesłanej tablicy liczb
+                {
+                    suma += args[i];
+                }
+                return suma;
+            }
+
+            public static int poteguj(int podstawaPotegi, int wykladnikPotegi = 2)
+            {
+                int tmp = 1;
+                for (int i = 0; i < wykladnikPotegi; i++)
+                {
+                    tmp *= podstawaPotegi;
+                }
+                return tmp;
+            }
+        }
+
+
+        class Obywatel // auto implementowane właściwości
+        {
+            public string imie { get; private set; } // modyfikatory dostępu na krótko
+            public string nazwisko { get; set; }// musi być public
+            public Obywatel(string imie, string nazwisko)
+            {
+                this.imie = imie;
+                this.nazwisko = nazwisko;
+            }
+
+        }
+    }
+}

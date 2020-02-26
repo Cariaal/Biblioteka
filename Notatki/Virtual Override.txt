@@ -1,0 +1,96 @@
+using System;
+
+
+    class Program
+    {
+        static void Display(Punkt p)
+        {
+            /* if (p is Punkt3d)
+                  Console.WriteLine(((Punkt3d)p).pobierzWsp());
+              else
+                  Console.WriteLine(p.pobierzWsp());*/
+                Punkt3d p3d = p as Punkt3d; // rzutowanie na punkt 3d kiedy jest to możliwe. Jeśli nie jest to bd null
+            if (p3d == null)
+            {
+                Console.WriteLine(p.pobierzWsp());
+            }
+            else
+            {
+                Console.WriteLine(p3d.pobierzWsp());
+            }
+        }
+
+        static string getClassName(Object x) // wszystkie klasy dziedziczą z OBJECT
+        {
+            return x.ToString(); // Zwraca nazwę klasy X !!!!!!!!!!!
+        }
+
+        static void Main(string[] args)
+        {
+            Punkt a, b; 
+            a = new Punkt(1,2);
+            b = new Punkt3d(10,20,30);
+            Punkt3d c = new Punkt3d(100, 200, 300);
+            Console.WriteLine(b.pobierzWsp());
+           /* Console.WriteLine(((Punkt3d)b).pobierzWsp()); // Rzutowanie w dół. DOMYŚLNIE JEST W GÓRĘ. Rzutujemy do klasu punkt3d
+            Display(a);
+            Display(b);
+            Display(c);
+            Console.WriteLine(getClassName(a));
+            Console.WriteLine(getClassName(b));
+            Console.WriteLine(getClassName(c));*/
+            Console.ReadKey();
+        }
+    }
+    class Punkt
+    {
+        public int X
+        {
+            get;
+            protected set;
+        }
+
+        public int Y
+        {
+            get;
+            private set;
+        }
+
+        public Punkt()
+        {
+            this.X = 0;
+            this.Y = 0;
+        }
+
+        public Punkt(int X, int Y)
+        {
+            this.X = X;
+            this.Y = Y;
+        }
+        virtual public string pobierzWsp()
+        {
+            return this.X + ", " + this.Y;
+        }
+    }
+
+    class Punkt3d : Punkt
+    {
+
+        public int Z
+        {
+            get;
+            protected set;
+        }
+        public Punkt3d(int X, int Y, int Z) : base(X, Y)
+        {
+            this.Z = Z;
+        }
+        override public string pobierzWsp()
+        {
+            return base.pobierzWsp() + ", " + this.Z;
+        }
+    }
+
+
+
+

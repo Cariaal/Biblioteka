@@ -1,0 +1,61 @@
+using System;
+using skrot = dluga.nazwa.przestrzeni;
+using C = System.Console;
+
+namespace VKP
+{
+    class Program
+    {
+        public static double PI = 3.14;
+        public Program()
+            {
+            Console.WriteLine("Namespace VKP");
+            }
+        static void Main(string[] args)
+        {
+            Program a = new Program();
+            X.Program b = new X.Program();
+            global::Program c = new global::Program();
+            dluga.nazwa.przestrzeni.Program d = new dluga.nazwa.przestrzeni.Program();
+            skrot::Program e = new skrot::Program();
+            C.WriteLine(PI);
+            Console.ReadKey();
+        }
+    }
+}
+
+namespace X
+{
+    class Program // jest w innej przestrzeni nazw
+    {
+        public Program()
+        {
+            Console.WriteLine("Namespace X");
+        }
+    }
+}
+class Program
+{
+    public Program()
+    {
+        Console.WriteLine("Namespace GLOBAL");
+    }
+}
+
+namespace dluga
+{
+    namespace nazwa
+    {
+        namespace przestrzeni
+        {
+            class Program
+            {
+                double c = VKP.Program.PI;
+                public Program()
+                {
+                    Console.WriteLine("Długanazwa przestrzeni");
+                }
+            }
+        }
+    }
+}

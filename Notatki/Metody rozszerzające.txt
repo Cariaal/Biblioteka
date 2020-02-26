@@ -1,0 +1,43 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+    class Program
+    {
+        static void Main(String[] args)
+        {
+        String a = "agala";
+        //Console.WriteLine(StringHelper.isCapitalized(a));
+        Console.WriteLine(a.isCapitalized());
+        Test b = new Test();
+        b.tester();
+        Console.ReadKey();
+        }
+    }
+
+static class StringHelper
+{
+   /* public static bool isCapitalized(string value)
+    {
+        return Char.IsUpper(value[0]);
+    }*/
+    public static bool isCapitalized(this String value)
+    {
+        return Char.IsUpper(value[0]); //która literka stringa
+    }
+}
+
+class Test
+{ 
+
+}
+class Test2 : Test
+{
+
+}
+static class TestHelper
+{
+    public static bool tester(this Test value)
+    {
+        return true;
+    }
+}

@@ -1,0 +1,19 @@
+using System;
+
+class Punkt3d : Punkt
+    {
+    public int Z
+    {
+        get;
+        protected set;
+    }
+    public Punkt3d(int X, int Y, int Z) : base(X,Y) // wywołaj z klasy bazowej
+    {
+        this.Z = Z;
+    }
+    new public string pobierzWsp()
+    {
+        return base.pobierzWsp() + " " + this.Z;
+    }
+
+}

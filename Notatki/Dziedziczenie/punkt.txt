@@ -1,0 +1,32 @@
+using System;
+
+class Punkt
+    {
+    public int X
+        {
+        get;
+        protected set;
+        }
+    public int Y
+        {
+        get;
+        private set;
+        }
+    public Punkt()
+        {
+        Console.WriteLine("Konstruktor domyślny Punkt");
+        this.X = 0;
+        this.Y = 0;
+        }
+    public Punkt(int X, int Y)
+        {
+        Console.WriteLine("Konstruktor domyślny Punkt 2 param");
+        this.X = X;
+        this.Y = Y;
+        }
+
+    public string pobierzWsp()
+    {
+        return this.X + " " + this.Y;
+    }
+}

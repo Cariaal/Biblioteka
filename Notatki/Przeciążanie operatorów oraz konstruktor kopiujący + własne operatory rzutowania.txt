@@ -1,0 +1,112 @@
+using System;
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StanKonta a = new StanKonta(10, 5);
+            StanKonta b = new StanKonta(5, 10);
+            Console.WriteLine(a.Equals(b));
+            Console.WriteLine(a.GetHashCode());
+            Console.WriteLine(b.GetHashCode());
+        float e;
+        e = (float)a;
+        Console.WriteLine(e);
+        a = (StanKonta)5.99;
+        Console.WriteLine(a);
+        Console.ReadKey();
+    }
+    }
+    class StanKonta
+    { 
+    public uint Zl
+        {
+            get;
+            private set;
+        }
+        private ushort gr;
+        public ushort Gr
+        {
+            get 
+            { 
+                return this.gr;
+            }
+            private set 
+            {
+                if (value <=0)
+                {
+                    this.Gr = 0;
+                }
+                else if (value >= 100)
+                {
+                    uint zlotychwGroszach = (uint)value / 100;
+                    Zl += zlotychwGroszach;
+                    this.gr = (ushort)(value - zlotychwGroszach * 100);
+                }
+                else 
+                {
+                    this.gr = value;
+                }
+            }
+        }
+        public StanKonta(uint zl, ushort gr)
+        {
+            this.Zl = zl;
+            this.Gr = gr;
+        }
+    public StanKonta(StanKonta k)
+    {
+        this.Gr = k.Gr;
+        this.Zl = k.Zl;
+    }
+        public static bool operator ==(StanKonta L, StanKonta P)
+        {
+            if (L.Gr == P.Gr && L.Zl == P.Zl)
+            {
+                return true;
+            }
+            return false;
+        }
+        public static bool operator !=(StanKonta L, StanKonta P)
+        {
+            return !(L == P);
+        }
+    public static StanKonta operator +(StanKonta L, StanKonta P) 
+    {
+        uint tmpZl = L.Zl + P.Zl;
+        ushort tmpGr = (ushort)(L.Gr + P.Gr);
+        uint zlotychwGroszach = (uint)tmpGr / 100;
+        tmpZl += zlotychwGroszach;
+        tmpGr = (ushort)(tmpGr - zlotychwGroszach * 100);
+        return new StanKonta(tmpZl, tmpGr);
+    }
+    public override string ToString()
+    {
+        return ($"{Zl} złotych i {Gr} groszy");
+    }
+    public override bool Equals(object obj)
+    {
+        if (!(obj is StanKonta)) return false;
+        return (this == (StanKonta)obj);
+    }
+    public override int GetHashCode()
+    {
+        return (this.Zl *4 + this.Gr *20).GetHashCode();
+    }
+    // explicit - kiedy jestem pewien, że może zajść pomyłka
+    // implicit
+    public static explicit operator float(StanKonta value)
+    {
+        return value.Zl + (value.Gr /100.0f);
+    }
+
+    public static explicit operator StanKonta(float value)
+    {
+        //ushort tmpGr = (ushort)((value - (uint)value) * 100);
+        ushort tmpGr = Convert.ToUInt16((value - (uint)value) * 100);
+        return new StanKonta((uint)value, tmpGr);
+    }
+}
+   
+
+
+

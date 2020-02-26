@@ -1,0 +1,97 @@
+using System;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*
+            Console.WriteLine(Welcomer.Message);
+            Car samochod = new Car("opis");
+            Console.WriteLine(samochod.NumOfWheels);
+            */
+
+            /*
+            Car samochod = new Car("opis samochodu 1", 10);
+            Car samochod2 = samochod; // przypisanie do siebie adresów a nie zmiennych
+            // samochod1 i samochod2 to te same samochody
+            samochod2.Description = "opis samochodu 2";
+            Console.WriteLine(samochod.Description +" "+ samochod.NumOfWheels);
+            Console.WriteLine(samochod2.Description + " " + samochod2.NumOfWheels);
+            */
+
+            /*
+             * int a = 10;
+            int b = a;
+            b = 20;
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+            Console.WriteLine(a);
+            */
+
+            //konstruktor kopiujący poniżej. 2 różne instancje klasy
+            Car samochod = new Car("opis samochodu 1", 10);
+            Car samochod2 = new Car(samochod);
+            samochod2.Description = "Nowy opis";
+            Console.WriteLine(samochod.Description + " " + samochod.NumOfWheels);
+            Console.WriteLine(samochod2.Description + " " + samochod2.NumOfWheels);
+
+
+            Console.ReadKey();
+        }
+    }
+
+    class Welcomer
+    {
+        public static string Message
+        {
+            get;
+            private set;
+        }
+        static Welcomer() //statyczny konstrukctor
+        {
+            DateTime now = DateTime.Now;
+            if (now.Hour < 17)
+            {
+                Message = "Dzień dobry";
+            }
+            else
+            {
+                Message = "Dobry wieczór";
+            }
+        }
+    }
+
+    class Car
+    {
+        public string Description
+        {
+            get;
+            set;
+        }
+        public byte NumOfWheels // wydajność bo BYTE
+        {
+            get;
+            private set;
+        }
+        // wywołanie konstruktora w konstruktorze!!!
+        public Car(string description, byte numOfWheels = 4)
+            {
+            this.Description = description;
+            this.NumOfWheels = numOfWheels;
+            }
+
+        public Car(string description) : this(description, 10)
+        {// konstruktor wywołujący inny konstruktor
+            Console.WriteLine("Konstruktor z konstruktora");
+        }
+
+        public Car(Car samochod) // konstruktor kopiujący
+        {
+            this.Description = samochod.Description;
+            this.NumOfWheels = samochod.NumOfWheels;
+            samochod.NumOfWheels = 30; // można edytować kopiowany obiekt
+        }
+    }
+}

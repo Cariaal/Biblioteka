@@ -1,0 +1,36 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        int a = 10;
+        string b;
+        Console.WriteLine(">>");
+        b = Console.ReadLine();
+        try
+        {
+            if (a == 10) throw new OurNameException("a nie ma być 10"); // jest wysyłane do konstruktora wyjątku!!!
+            int tmp = Convert.ToInt32(b);
+            Console.WriteLine((a / tmp));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+        finally
+        {
+            Console.WriteLine("Zawsze się wykona, tutaj zamykać pliki, połączenia, czyścić");
+        }
+            Console.ReadKey();
+        }
+    }
+
+class OurNameException : Exception
+{
+    public OurNameException(string msg) : base(msg)
+    { 
+    }
+}

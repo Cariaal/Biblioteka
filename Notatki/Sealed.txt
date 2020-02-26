@@ -1,0 +1,28 @@
+using System;
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.ReadKey();
+        }
+    }
+
+class koncowaKlasa // nie można użytć PRIVATE do klasy tylko SEALED
+{
+    virtual public void test() // nie może być SEALED w klasie bazowej
+    { 
+    }
+}
+
+class PochodnaKlasa : koncowaKlasa
+{
+    sealed override public void test() // Może być SEALED ale NADPISAŁA wersję VIRTUAL
+    {
+    }
+}
+
+class KlasaNastepna : PochodnaKlasa
+{ 
+}

@@ -1,0 +1,76 @@
+using System;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int plNum = 0;
+            do
+            {
+                Console.WriteLine(Matematyka.dodaj(5,7));
+                Console.WriteLine("ilu graczy?");
+                while (!int.TryParse(Console.ReadLine(), out plNum))
+                { Console.WriteLine("Podaj liczbę!"); }
+                Gracz[] gracz = new Gracz[plNum];
+                for (int i = 1; i < gracz.Length; i++)
+                {
+                    gracz[i] = new Gracz("Gracz " + (i+1));
+                }
+
+                for (int i = 0; i < gracz.Length; i++)
+                {
+                    Console.WriteLine(gracz[i].Id + ": " + gracz[i].Nick);
+                }
+                Console.ReadKey();
+                Console.Clear();
+            } while (plNum != 0);
+            Console.WriteLine("Koniec!");
+   
+        }
+    }
+
+
+
+    class Gracz
+    {
+        string nick;
+        int id =0;
+        public static int nextId = 0;
+
+        public Gracz()
+        {
+            nick = null;
+            id = 0;
+        }
+
+        public Gracz(string nick)
+        {
+            this.nick = nick;
+            nextId++;
+            id = nextId;
+        }
+    
+        public static int NextId
+        {
+            get { return nextId; }
+        }
+        public string Nick
+        {
+            get {return this.nick;}
+            set {this.nick = value;}
+        }
+        public int Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+    }
+
+  
+
+
+
+}

@@ -1,0 +1,46 @@
+using System;
+
+namespace ConsoleApp3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Samochod samochod = new Samochod();
+            Console.WriteLine(samochod.pobierzMoc());
+            Console.ReadKey();
+        }
+    }
+
+    class Samochod
+    {
+
+        public Samochod() // tu się tworzy silnik
+        {
+            silnik = new Silnik(); // odpala klase silnik z klasy samochód
+            silnik.Moc = 200;
+            Console.WriteLine("konst samochod");
+        }
+
+        public uint pobierzMoc()
+        {
+            return this.silnik.Moc;
+        }
+
+        private class Silnik // musi być tego samego typu co private Silnik silnik;
+        {
+            public uint Moc;
+            public Silnik(uint moc = 500)
+            {
+                this.Moc = moc;
+                Console.WriteLine("konst silnik");
+            }
+        }
+        private Silnik silnik; // ten sam typ private co klasa
+
+
+
+    }
+
+   
+}

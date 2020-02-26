@@ -1,0 +1,20 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+    class Program
+    {
+        public static int? getSomethingFromDatabase()
+        {
+        return null;
+        }
+        static void Main(string[] args)
+        {
+            int? a = getSomethingFromDatabase();
+            //Nullable<int> a = getSomethingFromDatabase();
+            int b = a ?? 0; // a ?? 0 - przypisz wartość 'a' JEŻELI ISTNIEJE a jak nie to przypisz to co po ?? : '0' 
+        Console.WriteLine(b);
+        Console.ReadKey();
+        }
+    }
+
